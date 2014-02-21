@@ -1,0 +1,28 @@
+1，新建一个控制台项目，不需要预编译
+2，将lua代码加复制过去。
+3，项目属性--> 配置属性-->c/c++ --> 附加包含目录   加上lua代码
+3，项目属性--> 配置属性-->c/c++ --> 预处理器定义   加上：_CRT_SECURE_NO_DEPRECATE
+5，main代码如下
+#define _CRT_SECURE_NO_DEPRECATE
+
+#include "stdafx.h"
+#include <stdlib.h>
+
+extern "C" {
+    #include "lua.h"
+    #include "lualib.h"
+    #include "lauxlib.h"
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+    lua_State* L = luaL_newstate();
+    luaL_openlibs(L);
+    char *testfunc = "print('hello world')";
+    if (luaL_dostring(L,testfunc)){
+     printf("Failed to invoke.\n");
+    }
+    lua_close(L);
+    system("PAUSE");
+    return 0;
+}
