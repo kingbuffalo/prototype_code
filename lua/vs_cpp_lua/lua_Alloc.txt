@@ -1,0 +1,30 @@
+typedef void * (*lua_Alloc) (void *ud,
+                             void *ptr,
+                             size_t osize,
+                             size_t nsize);
+used in function : lua_State *lua_newstate (lua_Alloc f, void *ud);
+
+static void* stdLuaAlloc (void *ud, void *ptr, size_t osize,size_t nsize) {
+	printf("stdLuaAlloc os->%d,ns->%d\n",osize,nsize);
+	(void)ud;  (void)osize;  /* not used */
+	char* ttt = (char*)ud;
+	printf("ud = %s\n",ttt);
+	if (nsize == 0) {
+		free(ptr);
+		return NULL;
+	}
+	else
+		return realloc(ptr, nsize);
+}
+
+void tryAllocFunc(){
+	lua_State* L = lua_newstate(&stdLuaAlloc,"hahaha");
+	luaL_openlibs(L);
+	char *testfunc = "local t={};for i=0,10 do t[i..''] = i end";
+	if (luaL_dostring(L,testfunc)){
+		printf("Failed to invoke.\n");
+	}
+	lua_close(L);
+}
+个人认为:stdluaalloc 会在申请和删除内存时(nsize==0)调用 ud作为外部参数，以指针的形式传进去
+大概会打印出很多的stdLuaAlloc，因为这个函数的调用贯穿整个lua所有内存申请释放操作。

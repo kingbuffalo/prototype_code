@@ -1,0 +1,44 @@
+static int funcNameInC(lua_State *L){
+	//这个函数里边的lua栈下标，跟下一个要注册的函数，没关系。
+	printf("%d\n",lua_gettop(L)); //==2
+	int p1 = lua_tointeger(L,1); //从栈中取得参数 从1开始
+	int p2 = lua_tointeger(L,2); 
+	int sum = p1+p2;
+	int sub = p1-p2;
+	lua_pushinteger(L,sum); //将结果压入栈
+	lua_pushinteger(L,sub);
+	printf("%d\n",lua_gettop(L)); //==4
+	//return 1; //lua函数的返回结果  <--如果用这个，那么会将sub作为结果。 因为sub是最近压栈的
+    return 2;
+}
+
+static int funcNameInC_2(lua_State *L){
+	printf("%d\n",lua_gettop(L)); //==2
+	int p1 = lua_tointeger(L,1); //从栈中取得参数 从1开始
+	int p2 = lua_tointeger(L,2); 
+	int sum = p1+p2;
+	int sub = p1-p2;
+	lua_pushinteger(L,sub);
+	lua_pushinteger(L,sum); //将结果压入栈
+	printf("%d\n",lua_gettop(L)); //==4
+	return 2; //lua函数的返回结果
+}
+
+void registCFun2Lua(lua_State* L){
+	lua_pushcfunction(L,&funcNameInC);
+	lua_setglobal(L,"funcNameInLua");
+	lua_pushcfunction(L,&funcNameInC_2);
+	lua_setglobal(L,"funcNameInLua_2");
+	//printf("%d\n",lua_gettop(L)); ==0
+}
+
+void tryCfunc(){
+	lua_State* L = luaL_newstate();
+	luaL_openlibs(L);
+	char *testfunc = "print(funcNameInLua(1,2));print(funcNameInLua_2(1,2))";
+	registCFun2Lua(L);
+	if (luaL_dostring(L,testfunc)){
+		printf("Failed to invoke.\n");
+	}
+	lua_close(L);
+}
