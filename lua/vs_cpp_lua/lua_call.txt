@@ -1,0 +1,24 @@
+    lua_State *L = luaL_newstate();
+	luaL_openlibs(L);
+
+	char *testfunc = "t={};t.x = 10;function main(a,b,c) print(a+b+c);return a+b+c end; main(2,t.x,3)";
+	if (luaL_dostring(L,testfunc)){
+		printf("Failed to invoke.\n");
+	}
+
+	//the_same_as main(2,t.x,3) --begin
+	lua_getglobal(L,"main");
+	lua_pushinteger(L,2);
+	lua_getglobal(L,"t");
+	lua_getfield(L,-1,"x");
+	lua_remove(L,-2);
+	lua_pushinteger(L,3);
+	lua_call(L,3,1);
+	printf("ret = %d\n",lua_tointeger(L,-1));
+	//the_same_as main(2,t.x,3) --end
+
+	lua_close(L);
+--print:
+--15
+--15
+--ret = 15

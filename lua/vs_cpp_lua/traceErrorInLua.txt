@@ -1,0 +1,11 @@
+local function main()]
+    local lib = require "boy"
+    print(lib.fun0(10))
+end
+local function ddFun(Msg)
+    print(Msg)
+    print(debug.traceback())
+end
+xpcall(main,ddFun)
+
+--若main函数报错，则会打印出具体哪一行报错

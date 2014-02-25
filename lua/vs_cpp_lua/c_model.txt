@@ -1,0 +1,37 @@
+static int cmodelFun1(lua_State *L){
+	int p1 = lua_tointeger(L,1); 
+    printf("%d <-func1\n",p1);
+    lua_pushinteger(L,p1+10);
+	return 1; 
+}
+static int cmodelFun2(lua_State *L){
+	int p1 = lua_tointeger(L,1); 
+    printf("%d <-func2\n",p1);
+    lua_pushinteger(L,p1-10);
+	return 1; 
+}
+
+static const struct luaL_Reg myLib[] = {
+	{"fun1",cmodelFun1},
+	{"fun2",cmodelFun2},
+	{NULL,NULL}
+};
+
+int lua_open_mylib(lua_State* L){
+	luaL_newlib(L,myLib);//还是用这句比较好。
+	return 1;
+}
+void tryC_model(){
+	lua_State* L = luaL_newstate();
+	luaL_openlibs(L);
+
+	luaL_requiref(L,"boy",lua_open_mylib,0);
+	char *testfunc = "local function main() local lib = require \"boy\"; print(lib.fun1(10)); end; main()";
+	if (luaL_dostring(L,testfunc)){
+		printf("Failed to invoke.\n");
+	}
+	lua_close(L);
+}
+
+--输出：10 <-func1
+--      20
