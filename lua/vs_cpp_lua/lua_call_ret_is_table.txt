@@ -1,0 +1,21 @@
+    lua_State *L = luaL_newstate();
+	luaL_openlibs(L);
+
+	char *testfunc = "function main()return{x='hello','buffalo'}end; main()";
+	if (luaL_dostring(L,testfunc)){
+		printf("Failed to invoke.\n");
+	}
+	lua_getglobal(L,"main");
+	lua_call(L,0,1);
+	lua_getfield(L,-1,"x");
+	printf("%s\n",lua_tostring(L,-1));
+	lua_remove(L,-1);
+	lua_rawgeti(L,-1,1);
+	printf("%s\n",lua_tostring(L,-1));
+	
+
+	lua_close(L);
+
+--print:
+hello
+buffalo
