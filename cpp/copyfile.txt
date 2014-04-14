@@ -1,0 +1,27 @@
+1:
+std::ifstream input("in",ios::binary);
+std::ofstream output("out",ios::binary);
+char ch;
+while (input.get(ch)) output << ch;
+
+2:
+std::ifstream input("in",ios::binary);
+std::ofstream output("out",ios::binary);
+std::string line;
+while (getline(input,line)) output << line << "\n"; // if the last line don't have \n  the output will have it
+
+3:
+#include < fstream >
+#include < iterator >
+#include < algorithm >
+
+std::ifstream input("in",ios::binary);
+std::ofstream output("out",ios::binary);
+input.unsetf(ios::skipws);
+copy(istream_iterator(input),istream_iterator(),ostream_iterator(output,""));
+
+
+4:
+std::ifstream input("in",ios::binary);
+std::ofstream output("out",ios::binary);
+output << input.rdbuf();
