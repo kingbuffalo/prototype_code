@@ -1,0 +1,25 @@
+// OpenGlTest.cpp : 定义控制台应用程序的入口点。
+//
+
+//在没有设置任何lookat 或 orthic 等等什么的情况下，好像 gl窗口就是一个以中心为原点，最大值为1的x,y坐标
+
+#include "stdafx.h"
+#include <gl/glut.h>
+
+void dDisplay(void){
+	glClear(GL_COLOR_BUFFER_BIT);
+	 glRectf(-0.5f,-0.5f,0.5f,0.5f);
+	glFlush();
+}
+
+int _tmain(int argc, _TCHAR* argv[])
+{
+	glutInit(&argc,(char**)argv);
+	glutInitDisplayMode(GLUT_RGB|GLUT_SINGLE);
+	glutInitWindowPosition(100,100);
+	glutInitWindowSize(400,400);
+	glutCreateWindow("first");
+	glutDisplayFunc(&dDisplay);
+	glutMainLoop();
+	return 0;
+}
