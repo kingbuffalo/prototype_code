@@ -1,7 +1,14 @@
 static int cmodelFun1(lua_State *L){
+//c 返回一个table 给lua
 	int p1 = lua_tointeger(L,1); 
-    printf("%d <-func1\n",p1);
-    lua_pushinteger(L,p1+10);
+	lua_newtable(L);
+    	lua_pushinteger(L,p1+10);
+	lua_rawseti(L,-2,1);
+	lua_pushinteger(L,p1+100);
+	lua_rawseti(L,-2,2);
+	lua_pushstring(L,"key");
+	lua_pushinteger(L,p1+1000);
+	lua_rawset(L,-3);
 	return 1; 
 }
 static int cmodelFun2(lua_State *L){
@@ -26,12 +33,12 @@ void tryC_model(){
 	luaL_openlibs(L);
 
 	luaL_requiref(L,"boy",lua_open_mylib,0);
-	char *testfunc = "local function main() local lib = require \"boy\"; print(lib.fun1(10)); end; main()";
+	char *testfunc = "local function main() local lib = require \"boy\"; local tt=lib.fun1(10);print(tt);print(tt[1],tt[2],tt.key); end; main()";
 	if (luaL_dostring(L,testfunc)){
 		printf("Failed to invoke.\n");
 	}
 	lua_close(L);
 }
 
---输出：10 <-func1
---      20
+--输出：table:xxxxx
+--      20	110	1010
