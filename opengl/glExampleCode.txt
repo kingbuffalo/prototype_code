@@ -1,0 +1,80 @@
+///////////////////////////////ex1/////////////////////////////////
+//一个黑窗，什么都没有
+#include <GL/glut.h>
+
+void display(void){
+    glClear(GL_COLOR_BUFFER_BIT);
+    glFlush();
+}
+
+int main(int argc, char **argv){
+    glutInit(&argc,argv);
+    glutCreateWindow("ex1");
+    glutDispplayFunc(display);
+    glutMainLoop();
+    return 0;
+}
+
+
+///////////////////////////////ex2/////////////////////////////////
+//一个黑窗，能响应exc 键
+#include <GL/glut.h>
+
+void display(void){
+    glClear(GL_COLOR_BUFFER_BIT);
+    glFlush();
+}
+void keyboardFunc(unsigned char key, int x, int y){
+    if ( key == 27 ) exit(0);
+    else printf("%c pressed\n",key);
+}
+
+int main(int argc, char **argv){
+    glutInit(&argc,argv);
+    glutCreateWindow("ex1");
+    glutDispplayFunc(display);
+    glutKeyboardFunc(keyboardFunc);
+    glutMainLoop();
+    return 0;
+}
+
+
+
+///////////////////////////////ex3/////////////////////////////////
+//一个黑窗，有一个三角形
+#include <GL/glut.h>
+
+void display(void){
+    glClear(GL_COLOR_BUFFER_BIT);
+    glLoadIdentity();
+    gluLookAt(0.0,0.0,0.5,  0.0,0.0,0.0, 0.0,1.0,0.0);
+
+    glBegin(GL_LINE_LOOP);
+        glVertext3f(-0.3,-0.3,0.0);
+        glVertext3f(0.0,0.3,0.0);
+        glVertext3f(0.3,-0.3,0.0);
+    glEnd()
+    glFlush();
+}
+void keyboardFunc(unsigned char key, int x, int y){
+    if ( key == 27 ) exit(0);
+    else printf("%c pressed\n",key);
+}
+
+void reshape(int width,int height){
+    glViewport(0,0,(GLsizei)width,(GLsizei)height);
+    glMatrixMode(GL_PROJECTION);
+    glLoadIdentity();
+    glOrtho(-1.0,1.0,  -1.0,1.0,   -1.0,1.0);
+    glMatrixMode(GL_MODELVIEW);
+}
+
+int main(int argc, char **argv){
+    glutInit(&argc,argv);
+    glutCreateWindow("ex1");
+    glutDispplayFunc(display);
+    glutKeyboardFunc(keyboardFunc);
+    glutReshapeFunc(reshape);
+    glutMainLoop();
+    return 0;
+}
