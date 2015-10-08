@@ -1,3 +1,5 @@
+=========
+我自己阅读此代码的一些笔记
 This repository was moved to https://github.com/ejoy/ejoy2d .
 ========
 
