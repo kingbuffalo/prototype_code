@@ -1,6 +1,8 @@
 #ifndef EJOY_2D_TEXTURE_H
 #define EJOY_2D_TEXTURE_H
 
+// 管理texture 的 数据 array
+
 #include "render.h"
 #include <stdint.h>
 
