@@ -3,6 +3,11 @@
 
 #include <stdlib.h>
 
+/*
+就是管理一个内存块 包括初始化和切割， 切割之后不管之前的了???
+如何删除内存块？
+*/
+
 struct block {
 	char * buffer;
 	int sz;

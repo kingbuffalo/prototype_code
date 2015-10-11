@@ -1,6 +1,7 @@
 #ifndef ejoy2d_blend_mode_h
 #define ejoy2d_blend_mode_h
 
+//弄一层gl的blendmode 转成 ejoy的 blendmode 好吧，有什么实际意义？
 // for ejoy2d compatibility
 
 #define BLEND_GL_ZERO 0

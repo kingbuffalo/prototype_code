@@ -1,6 +1,10 @@
 #ifndef ejoy3d_render_h
 #define ejoy3d_render_h
 
+/*
+这里应该就是所有与opengl的接口了
+*/
+
 #include <stdint.h>
 
 typedef unsigned int RID;

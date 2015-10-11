@@ -1,6 +1,11 @@
 #ifndef ejoy3d_array_h
 #define ejoy3d_array_h
 
+/*
+管理一个数组式的内存块
+可以管理任意类型的数据
+*/
+
 struct array_node;
 
 struct array {
