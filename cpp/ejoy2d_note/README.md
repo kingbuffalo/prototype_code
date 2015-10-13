@@ -1,5 +1,18 @@
-=========
+
 我自己阅读此代码的一些笔记
+---------------------
+整个引擎的结构
+所有直接调用opengl 的在 render.h里
+其它就是分布在各个 数据管理中
+----
+step1:
+	理解example
+	将所有的lua接口 都尝试一次。
+	抄一遍引擎
+step2:
+	嵌入到qt中，开工
+
+========
 This repository was moved to https://github.com/ejoy/ejoy2d .
 ========
 
