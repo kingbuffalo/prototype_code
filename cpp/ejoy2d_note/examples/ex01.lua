@@ -1,4 +1,5 @@
 local ej = require "ejoy2d"
+--会调用ejoy2d里的init.lua
 local fw = require "ejoy2d.framework"
 local pack = require "ejoy2d.simplepackage"
 
