@@ -21,6 +21,9 @@
     <Filter Include="lib\src\render">
       <UniqueIdentifier>{190d12fe-25b2-430a-8db5-9ee3abf54a20}</UniqueIdentifier>
     </Filter>
+    <Filter Include="script">
+      <UniqueIdentifier>{75f11662-1ede-40a0-ad88-b2d47cfc5ccb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\..\mingw\window.c">
@@ -202,5 +205,34 @@
     <ClInclude Include="..\..\..\lib\render\render.h">
       <Filter>lib\src\render</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\ejoy2d\geometry.lua">
+      <Filter>script</Filter>
+    </None>
+    <None Include="..\..\..\ejoy2d\init.lua">
+      <Filter>script</Filter>
+    </None>
+    <None Include="..\..\..\ejoy2d\matrix.lua">
+      <Filter>script</Filter>
+    </None>
+    <None Include="..\..\..\ejoy2d\particle.lua">
+      <Filter>script</Filter>
+    </None>
+    <None Include="..\..\..\ejoy2d\richtext.lua">
+      <Filter>script</Filter>
+    </None>
+    <None Include="..\..\..\ejoy2d\shader.lua">
+      <Filter>script</Filter>
+    </None>
+    <None Include="..\..\..\ejoy2d\simplepackage.lua">
+      <Filter>script</Filter>
+    </None>
+    <None Include="..\..\..\ejoy2d\sprite.lua">
+      <Filter>script</Filter>
+    </None>
+    <None Include="..\..\..\ejoy2d\spritepack.lua">
+      <Filter>script</Filter>
+    </None>
   </ItemGroup>
 </Project>

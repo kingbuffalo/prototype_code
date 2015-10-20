@@ -81,6 +81,17 @@
       <Project>{029e13fb-276a-4b6f-8346-00f3072734e7}</Project>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\ejoy2d\geometry.lua" />
+    <None Include="..\..\..\ejoy2d\init.lua" />
+    <None Include="..\..\..\ejoy2d\matrix.lua" />
+    <None Include="..\..\..\ejoy2d\particle.lua" />
+    <None Include="..\..\..\ejoy2d\richtext.lua" />
+    <None Include="..\..\..\ejoy2d\shader.lua" />
+    <None Include="..\..\..\ejoy2d\simplepackage.lua" />
+    <None Include="..\..\..\ejoy2d\sprite.lua" />
+    <None Include="..\..\..\ejoy2d\spritepack.lua" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D3A9E9A6-062D-4C26-BF35-8F18ED840D8F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
