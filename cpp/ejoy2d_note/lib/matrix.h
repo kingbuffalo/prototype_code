@@ -46,6 +46,7 @@ matrix_identity(struct matrix *mm) {
 
 int matrix_inverse(const struct matrix *mm, struct matrix *mo);
 
+//srt: scale rotation transfrom
 struct srt {
 	int offx;
 	int offy;
